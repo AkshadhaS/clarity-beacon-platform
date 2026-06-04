@@ -4,14 +4,14 @@ import { ScoreGauge } from "@/components/veritas/ScoreGauge";
 import { ScoreCard } from "@/components/veritas/ScoreCard";
 import { SeverityBadge } from "@/components/veritas/SeverityBadge";
 import { ClaimGraph } from "@/components/veritas/ClaimGraph";
-import { getAnalysis } from "@/lib/mockData";
+import { getAnalysis, type Analysis } from "@/lib/mockData";
 import { Download, Share2, Printer, ChevronRight } from "lucide-react";
 
 export const Route = createFileRoute("/_app/reports/$id")({
   head: ({ params }) => ({
     meta: [{ title: `Report ${params.id} — VeritasIQ` }],
   }),
-  loader: ({ params }) => {
+  loader: ({ params }): { analysis: Analysis } => {
     const a = getAnalysis(params.id);
     if (!a) throw notFound();
     return { analysis: a };

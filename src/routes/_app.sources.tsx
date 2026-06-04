@@ -20,7 +20,7 @@ const sources = [
   { name: "WHO Bulletins", domain: "who.int.example", reliability: 89, bias: "Institutional", type: "Primary", coverage: "Global Health" },
 ];
 
-export default function _() { return null; }
+
 
 function Sources() {
   return (
