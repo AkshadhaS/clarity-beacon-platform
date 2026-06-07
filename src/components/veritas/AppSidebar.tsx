@@ -52,9 +52,9 @@ export function AppSidebar() {
           </div>
           <ul className="mt-2 space-y-1">
             {[
-              { id: "INV-2241", title: "Election narrative tracking", sev: "severity-high" },
-              { id: "INV-2237", title: "Pharma supplement campaign", sev: "severity-critical" },
-              { id: "INV-2229", title: "Corp earnings disclosures", sev: "severity-medium" },
+              { id: "INV-2241", title: "Election narrative tracking", sev: "bg-severity-high" },
+              { id: "INV-2237", title: "Pharma supplement campaign", sev: "bg-severity-critical" },
+              { id: "INV-2229", title: "Corp earnings disclosures", sev: "bg-severity-medium" },
             ].map((i) => (
               <li
                 key={i.id}
