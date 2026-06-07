@@ -28,7 +28,7 @@ export const Route = createFileRoute("/_app/reports/$id")({
 });
 
 function Report() {
-  const { analysis: a } = Route.useLoaderData();
+  const { analysis: a } = Route.useLoaderData() as { analysis: Analysis };
 
   return (
     <>

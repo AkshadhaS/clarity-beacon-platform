@@ -1,12 +1,12 @@
-import { Bell, Command, Search } from "lucide-react";
+import { Bell, Command, Search, Activity, Globe2 } from "lucide-react";
 
 export function TopBar({ title, breadcrumb }: { title: string; breadcrumb?: string[] }) {
   return (
-    <header className="hairline-b sticky top-0 z-10 flex h-14 items-center gap-4 bg-background/80 px-6 backdrop-blur">
+    <header className="hairline-b sticky top-0 z-10 flex h-14 items-center gap-4 bg-background/85 px-5 backdrop-blur">
       <div className="flex min-w-0 flex-1 items-center gap-4">
         <div className="min-w-0">
           {breadcrumb && (
-            <div className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+            <div className="text-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
               {breadcrumb.join(" / ")}
             </div>
           )}
@@ -14,7 +14,23 @@ export function TopBar({ title, breadcrumb }: { title: string; breadcrumb?: stri
         </div>
       </div>
 
-      <div className="relative hidden w-80 items-center md:flex">
+      <div className="hidden items-center gap-1.5 rounded-md border bg-card/60 px-2.5 py-1 xl:flex">
+        <span className="relative flex h-1.5 w-1.5">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-severity-low opacity-60" />
+          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-severity-low" />
+        </span>
+        <span className="text-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+          Pipeline · Operational
+        </span>
+        <span className="mx-1 h-3 w-px bg-border" />
+        <Activity className="h-3 w-3 text-muted-foreground" />
+        <span className="text-mono text-[10px] tabular-nums text-muted-foreground">42ms</span>
+        <span className="mx-1 h-3 w-px bg-border" />
+        <Globe2 className="h-3 w-3 text-muted-foreground" />
+        <span className="text-mono text-[10px] tabular-nums text-muted-foreground">UTC 14:22</span>
+      </div>
+
+      <div className="relative hidden w-72 items-center md:flex">
         <Search className="absolute left-2.5 h-3.5 w-3.5 text-muted-foreground" />
         <input
           type="text"
@@ -37,7 +53,9 @@ export function TopBar({ title, breadcrumb }: { title: string; breadcrumb?: stri
         </div>
         <div className="hidden text-left lg:block">
           <div className="text-[12px] font-medium leading-tight">Alex Tan</div>
-          <div className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground">Senior Analyst</div>
+          <div className="text-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+            Senior Analyst · L4
+          </div>
         </div>
       </button>
     </header>
