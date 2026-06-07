@@ -60,7 +60,7 @@ export function AppSidebar() {
                 key={i.id}
                 className="group flex items-start gap-2 rounded px-2 py-1.5 hover:bg-sidebar-accent/40"
               >
-                <span className={`mt-1.5 h-1.5 w-1.5 rounded-full bg-${i.sev}`} />
+                <span className={`mt-1.5 h-1.5 w-1.5 rounded-full ${i.sev}`} />
                 <div className="min-w-0 flex-1">
                   <div className="text-mono text-[10px] text-sidebar-foreground/60">{i.id}</div>
                   <div className="truncate text-[12px] text-sidebar-foreground/90">{i.title}</div>
