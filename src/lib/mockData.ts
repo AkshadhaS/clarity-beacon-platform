@@ -451,3 +451,50 @@ export const sourceReliability = [
   { tier: "Aggregator", value: 48 },
   { tier: "Anonymous / Social", value: 18 },
 ];
+
+/* ---------------- Narrative intelligence mock data ---------------- */
+
+export interface EmergingNarrative {
+  id: string;
+  title: string;
+  region: string;
+  velocity: number;
+  reach: string;
+  credibility: number;
+  sentiment: "neutral" | "outrage" | "fear" | "celebratory";
+  status: "tracking" | "verifying" | "corroborated" | "debunked";
+  firstSeen: string;
+  sources: number;
+}
+
+export const emergingNarratives: EmergingNarrative[] = [
+  { id: "NAR-0412", title: "'Coordinated election fraud in Midwest precincts'", region: "US · Midwest", velocity: 87, reach: "2.4M impressions", credibility: 18, sentiment: "outrage", status: "debunked", firstSeen: "06-08 09:12Z", sources: 412 },
+  { id: "NAR-0411", title: "EU energy framework 'will collapse heavy industry'", region: "EU", velocity: 64, reach: "880K impressions", credibility: 41, sentiment: "fear", status: "verifying", firstSeen: "06-08 04:38Z", sources: 184 },
+  { id: "NAR-0410", title: "Pharma 'suppressed' diabetes cure thread", region: "Global · EN", velocity: 92, reach: "5.1M impressions", credibility: 8, sentiment: "outrage", status: "debunked", firstSeen: "06-07 21:04Z", sources: 612 },
+  { id: "NAR-0409", title: "Reuters: EU-Mercosur trade pact ratification", region: "EU · LATAM", velocity: 38, reach: "1.1M impressions", credibility: 86, sentiment: "neutral", status: "corroborated", firstSeen: "06-07 12:18Z", sources: 92 },
+  { id: "NAR-0408", title: "Senator Hollis reform polling 'highest in 20 years'", region: "US", velocity: 71, reach: "640K impressions", credibility: 28, sentiment: "celebratory", status: "tracking", firstSeen: "06-07 03:50Z", sources: 78 },
+];
+
+export interface SourceReliabilityShift {
+  domain: string;
+  prev: number;
+  curr: number;
+  reason: string;
+}
+
+export const sourceReliabilityShifts: SourceReliabilityShift[] = [
+  { domain: "newsly-now.example", prev: 41, curr: 22, reason: "3 unretracted errors · partisan reframing" },
+  { domain: "capital-beacon.example", prev: 52, curr: 41, reason: "Anonymous-source dependency rising" },
+  { domain: "policywatch.example", prev: 71, curr: 64, reason: "Selection bias on energy coverage" },
+  { domain: "reuters.com", prev: 90, curr: 92, reason: "Corrected 2 prior items · transparency note" },
+  { domain: "ft.com", prev: 87, curr: 88, reason: "Methodology disclosed on polling pieces" },
+];
+
+export const investigationPhases = [
+  { phase: "Intake", count: 14, color: "primary" as const },
+  { phase: "Claim extraction", count: 22, color: "primary" as const },
+  { phase: "Evidence review", count: 18, color: "medium" as const },
+  { phase: "Source vetting", count: 11, color: "medium" as const },
+  { phase: "Editorial review", count: 7, color: "high" as const },
+  { phase: "Published brief", count: 39, color: "low" as const },
+];

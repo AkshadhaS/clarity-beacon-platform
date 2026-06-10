@@ -1,4 +1,4 @@
-import { Bell, Command, Search, Activity, Globe2 } from "lucide-react";
+import { Bell, Command, Search, FolderSearch, FileCheck2, BookOpen } from "lucide-react";
 
 export function TopBar({ title, breadcrumb }: { title: string; breadcrumb?: string[] }) {
   return (
@@ -14,27 +14,27 @@ export function TopBar({ title, breadcrumb }: { title: string; breadcrumb?: stri
         </div>
       </div>
 
-      <div className="hidden items-center gap-1.5 rounded-md border bg-card/60 px-2.5 py-1 xl:flex">
-        <span className="relative flex h-1.5 w-1.5">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-severity-low opacity-60" />
-          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-severity-low" />
-        </span>
-        <span className="text-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
-          Pipeline · Operational
-        </span>
-        <span className="mx-1 h-3 w-px bg-border" />
-        <Activity className="h-3 w-3 text-muted-foreground" />
-        <span className="text-mono text-[10px] tabular-nums text-muted-foreground">42ms</span>
-        <span className="mx-1 h-3 w-px bg-border" />
-        <Globe2 className="h-3 w-3 text-muted-foreground" />
-        <span className="text-mono text-[10px] tabular-nums text-muted-foreground">UTC 14:22</span>
+      <div className="hidden items-center gap-2 rounded-md border bg-card/60 px-2.5 py-1 xl:flex">
+        <FolderSearch className="h-3 w-3 text-primary" />
+        <span className="text-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Cases</span>
+        <span className="text-mono text-[11px] tabular-nums text-foreground">47</span>
+        <span className="h-3 w-px bg-border" />
+        <FileCheck2 className="h-3 w-3 text-severity-medium" />
+        <span className="text-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Review</span>
+        <span className="text-mono text-[11px] tabular-nums text-severity-medium">12</span>
+        <span className="h-3 w-px bg-border" />
+        <BookOpen className="h-3 w-3 text-muted-foreground" />
+        <span className="text-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Narratives</span>
+        <span className="text-mono text-[11px] tabular-nums text-foreground">23</span>
+        <span className="h-3 w-px bg-border" />
+        <span className="text-mono text-[10px] tabular-nums text-muted-foreground">14:22Z</span>
       </div>
 
       <div className="relative hidden w-72 items-center md:flex">
         <Search className="absolute left-2.5 h-3.5 w-3.5 text-muted-foreground" />
         <input
           type="text"
-          placeholder="Search analyses, sources, claims…"
+          placeholder="Search claims, sources, narratives…"
           className="h-9 w-full rounded-md border bg-card pl-8 pr-12 text-[13px] outline-none placeholder:text-muted-foreground/60 focus:ring-1 focus:ring-ring"
         />
         <kbd className="text-mono absolute right-2 inline-flex h-5 items-center gap-0.5 rounded border bg-muted px-1.5 text-[10px] text-muted-foreground">
@@ -54,7 +54,7 @@ export function TopBar({ title, breadcrumb }: { title: string; breadcrumb?: stri
         <div className="hidden text-left lg:block">
           <div className="text-[12px] font-medium leading-tight">Alex Tan</div>
           <div className="text-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
-            Senior Analyst · L4
+            Senior Investigator · L4
           </div>
         </div>
       </button>
