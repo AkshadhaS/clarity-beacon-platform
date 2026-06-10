@@ -61,7 +61,7 @@ function NewAnalysis() {
           {/* Column 1 — Input */}
           <section className="flex h-full flex-col bg-card">
             <div className="hairline-b px-4 py-3">
-              <div className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Source</div>
+              <div className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Evidence intake</div>
             </div>
             <div className="flex flex-col gap-1.5 p-3">
               {modes.map((m) => {
@@ -143,9 +143,9 @@ function NewAnalysis() {
           {/* Column 2 — Content viewer */}
           <section className="flex h-full flex-col bg-card">
             <div className="hairline-b flex items-center justify-between px-4 py-3">
-              <div className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Content viewer</div>
+              <div className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Investigation workspace</div>
               <div className="flex gap-1.5">
-                {["Highlights", "Claims", "Evidence", "Raw"].map((t, i) => (
+                {["Highlights", "Claims", "Evidence map", "Sources", "Raw"].map((t, i) => (
                   <button
                     key={t}
                     className={`rounded border px-2 py-0.5 text-[11px] ${
@@ -180,7 +180,7 @@ function NewAnalysis() {
           {/* Column 3 — Summary */}
           <section className="flex h-full flex-col bg-card">
             <div className="hairline-b px-4 py-3">
-              <div className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Analysis summary</div>
+              <div className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Forensic record</div>
             </div>
             <div className="flex-1 overflow-y-auto p-4">
               {!result && !analyzing && (
