@@ -96,14 +96,14 @@ function SiteHeader() {
 
 function StatusBar() {
   const items = [
-    { label: "PIPELINE", value: "OPERATIONAL", tone: "low" as const, dot: true },
-    { label: "LATENCY", value: "42ms" },
-    { label: "QUEUE", value: "0017 / 2000" },
-    { label: "MODELS", value: "v4.2.1" },
-    { label: "INDEX", value: "12.4M claims" },
-    { label: "SOURCES", value: "184,021 scored" },
-    { label: "UPTIME 90d", value: "99.982%" },
-    { label: "UTC", value: "14:22:08", mono: true },
+    { label: "INVESTIGATIONS", value: "47 OPEN", tone: "low" as const, dot: true },
+    { label: "PENDING REVIEW", value: "12" },
+    { label: "EMERGING NARRATIVES", value: "23 TRACKED" },
+    { label: "CLAIMS INDEXED", value: "12.4M" },
+    { label: "SOURCES SCORED", value: "184,021" },
+    { label: "ANALYSTS ONLINE", value: "118" },
+    { label: "BRIEFINGS PUBLISHED 30D", value: "184" },
+    { label: "UTC", value: "14:22:08Z", mono: true },
   ];
   return (
     <div className="border-b bg-sidebar/60 text-sidebar-foreground">
@@ -357,17 +357,17 @@ function LiveAnalysis() {
 
 function AlertFeed() {
   const events: { t: string; sev: Severity; tag: string; msg: string }[] = [
-    { t: "14:21", sev: "critical", tag: "ANOMALY", msg: "Coordinated amplification detected · 312 accounts" },
-    { t: "14:19", sev: "high", tag: "MANIP", msg: "Fear appeal spike · capital-beacon.example" },
+    { t: "14:21", sev: "critical", tag: "AMPLIFY", msg: "Coordinated amplification · 312 accounts · NAR-0412" },
+    { t: "14:19", sev: "high", tag: "MANIP", msg: "Fear-appeal spike · capital-beacon.example" },
     { t: "14:17", sev: "medium", tag: "CITE", msg: "Unsourced statistic flagged in INV-2417" },
     { t: "14:13", sev: "critical", tag: "SOURCE", msg: "newsly-now.example · reliability fell below 25" },
     { t: "14:09", sev: "medium", tag: "BIAS", msg: "Framing bias rising in 'energy framework' coverage" },
-    { t: "14:04", sev: "low", tag: "RESOLVE", msg: "INV-2410 closed · supported, low risk" },
+    { t: "14:04", sev: "low", tag: "VERIFY", msg: "INV-2410 corroborated · brief published" },
     { t: "13:58", sev: "high", tag: "FALLACY", msg: "False dilemma detected · op-ed cluster" },
-    { t: "13:51", sev: "medium", tag: "QUEUE", msg: "Batch ingest · 124 social posts (osint-feed-3)" },
+    { t: "13:51", sev: "medium", tag: "INTAKE", msg: "124 social posts received · OSINT feed 3" },
   ];
   return (
-    <ConsoleCard className="lg:col-span-3" title="Alert feed" hint="Last 72 minutes">
+    <ConsoleCard className="lg:col-span-3" title="Investigation alerts" hint="Last 72 minutes">
       <ul className="divide-y divide-border/60">
         {events.map((e, i) => (
           <li key={i} className="flex items-start gap-2 px-3 py-2">
@@ -551,14 +551,14 @@ function Capabilities() {
     { icon: Eye, title: "Source Evaluation", body: "Reliability scoring across primary, secondary, aggregator and opinion sources with audit history." },
     { icon: FileText, title: "Audit-Ready Reports", body: "Forensic exports with full provenance — usable in editorial review and legal discovery." },
     { icon: Globe2, title: "Multi-language", body: "Analyses in 14 languages including English, Spanish, Arabic, Mandarin, French, and Ukrainian." },
-    { icon: Cpu, title: "Programmatic API", body: "REST and webhook access for OSINT pipelines, ingestion automation, and SIEM integration." },
+    { icon: Cpu, title: "Programmatic API", body: "REST and webhook access for newsroom CMS, OSINT pipelines, and research workflows." },
   ];
   return (
     <section id="capabilities" className="border-b">
       <div className="mx-auto max-w-[1480px] px-5 py-10">
         <div className="mb-4 flex items-end justify-between">
           <SectionHeader eyebrow="Platform" title="Eight engines. One forensic record." />
-          <span className="text-mono text-[10px] text-muted-foreground">PIPELINE/8.MODULES</span>
+          <span className="text-mono text-[10px] text-muted-foreground">FORENSIC/MODULES</span>
         </div>
         <div className="grid gap-px overflow-hidden rounded-md border bg-border md:grid-cols-2 lg:grid-cols-4">
           {items.map((it) => {
@@ -593,7 +593,7 @@ function Workflow() {
       <div className="mx-auto max-w-[1480px] px-5 py-10">
         <div className="mb-4 flex items-end justify-between">
           <SectionHeader eyebrow="Workflow" title="Raw content → forensic record · under 60 seconds." />
-          <span className="text-mono text-[10px] text-muted-foreground">PIPELINE/STAGES</span>
+          <span className="text-mono text-[10px] text-muted-foreground">INVESTIGATION/STAGES</span>
         </div>
         <div className="grid gap-px overflow-hidden rounded-md border bg-border md:grid-cols-4">
           {steps.map((s) => {
@@ -700,7 +700,7 @@ function SiteFooter() {
           <div className="mt-4 flex flex-wrap items-center gap-3 text-[10px] uppercase tracking-[0.14em] text-sidebar-foreground/50">
             <span className="inline-flex items-center gap-1.5"><Building2 className="h-3 w-3" /> SOC 2 Type II</span>
             <span className="inline-flex items-center gap-1.5"><AlertTriangle className="h-3 w-3" /> ISO 27001</span>
-            <span className="inline-flex items-center gap-1.5"><Clock className="h-3 w-3" /> 99.98% SLA</span>
+            <span className="inline-flex items-center gap-1.5"><Clock className="h-3 w-3" /> GDPR · DPA</span>
           </div>
         </div>
         {[

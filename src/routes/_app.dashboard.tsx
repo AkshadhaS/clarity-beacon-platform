@@ -67,7 +67,7 @@ const toneMap = {
 function Overview() {
   return (
     <>
-      <TopBar title="Operations Overview" breadcrumb={["Workspace", "Overview"]} />
+      <TopBar title="Investigations Overview" breadcrumb={["Workspace", "Overview"]} />
       <main className="flex-1 overflow-y-auto">
         <div className="mx-auto max-w-7xl space-y-5 p-5">
           {/* KPI row */}
@@ -118,7 +118,7 @@ function Overview() {
           {/* Throughput + Heatmap */}
           <div className="grid gap-4 lg:grid-cols-[1.5fr_1fr]">
             <Card
-              title="Analysis throughput · 6 months"
+              title="Analyses processed · 6 months"
               right={
                 <div className="flex items-center gap-3 text-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
                   <Legend color="bg-primary" label="Throughput" />
@@ -128,7 +128,7 @@ function Overview() {
             >
               <DualChart />
             </Card>
-            <Card title="Risk heatmap · weekday × hour">
+            <Card title="Narrative pressure · weekday × hour">
               <Heatmap />
             </Card>
           </div>

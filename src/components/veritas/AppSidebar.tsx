@@ -75,20 +75,28 @@ export function AppSidebar() {
         <div className="rounded-md border border-sidebar-border bg-sidebar-accent/40 p-3">
           <div className="flex items-center justify-between">
             <span className="text-mono text-[10px] uppercase tracking-[0.16em] text-sidebar-foreground/60">
-              Status
+              Workspace
             </span>
             <span className="inline-flex items-center gap-1 text-mono text-[10px] text-severity-low">
-              <Radio className="h-2.5 w-2.5" /> LIVE
+              <Radio className="h-2.5 w-2.5" /> SYNCED
             </span>
           </div>
-          <div className="mt-2 grid grid-cols-2 gap-2 text-[10px] text-sidebar-foreground/70">
+          <div className="mt-2 grid grid-cols-2 gap-y-2 gap-x-3 text-[10px] text-sidebar-foreground/70">
             <div>
-              <div className="text-mono tabular-nums text-sidebar-foreground">99.98%</div>
-              <div>Uptime</div>
+              <div className="text-mono tabular-nums text-sidebar-foreground">12.4M</div>
+              <div>Claims indexed</div>
             </div>
             <div>
-              <div className="text-mono tabular-nums text-sidebar-foreground">142ms</div>
-              <div>p95 latency</div>
+              <div className="text-mono tabular-nums text-sidebar-foreground">184K</div>
+              <div>Sources scored</div>
+            </div>
+            <div>
+              <div className="text-mono tabular-nums text-sidebar-foreground">47</div>
+              <div>Cases open</div>
+            </div>
+            <div>
+              <div className="text-mono tabular-nums text-severity-medium">12</div>
+              <div>Pending review</div>
             </div>
           </div>
         </div>
@@ -98,10 +106,10 @@ export function AppSidebar() {
             <span className="text-mono text-[10px] uppercase tracking-[0.16em] text-sidebar-foreground/60">
               Plan
             </span>
-            <span className="text-mono text-[10px] text-sidebar-primary">ANALYST</span>
+            <span className="text-mono text-[10px] text-sidebar-primary">INVESTIGATOR</span>
           </div>
           <div className="mt-2 flex items-baseline justify-between text-[11px] text-sidebar-foreground/70">
-            <span>842 / 2,000</span>
+            <span>842 / 2,000 analyses</span>
             <span className="text-mono">42%</span>
           </div>
           <div className="mt-1.5 h-1 overflow-hidden rounded-full bg-sidebar-border">
@@ -111,7 +119,7 @@ export function AppSidebar() {
 
         <div className="flex items-center gap-2 rounded-md border border-severity-high/30 bg-severity-high/10 px-2.5 py-2 text-[11px] text-sidebar-foreground">
           <ShieldAlert className="h-3.5 w-3.5 text-severity-high" />
-          <span className="flex-1">3 critical reports await review</span>
+          <span className="flex-1">3 briefings awaiting editor sign-off</span>
         </div>
       </div>
     </aside>
