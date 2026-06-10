@@ -221,11 +221,57 @@ function NewAnalysis() {
                     <ScoreCard label="Bias" value={result.bias} inverted />
                     <ScoreCard label="Manipulation" value={result.manipulation} inverted />
                   </div>
+                  {/* Investigation status workflow */}
+                  <div className="rounded-md border bg-surface p-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Investigation status</span>
+                      <span className="text-mono text-[10px] text-primary">PHASE 3 / 6</span>
+                    </div>
+                    <div className="mt-2 flex items-center gap-0.5">
+                      {["Intake", "Claims", "Evidence", "Sources", "Editor", "Brief"].map((s, i) => (
+                        <div key={s} className="flex flex-1 flex-col items-center">
+                          <div className={`h-1 w-full ${i <= 2 ? (i === 2 ? "bg-severity-medium" : "bg-primary") : "bg-border"}`} />
+                          <span className={`mt-1 text-[9px] uppercase tracking-[0.1em] ${i <= 2 ? "text-foreground" : "text-muted-foreground"}`}>{s}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Claim extraction snapshot */}
+                  <div className="rounded-md border bg-surface p-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Claim extraction</span>
+                      <span className="text-mono text-[10px] tabular-nums text-muted-foreground">{result.claims.length} extracted</span>
+                    </div>
+                    <div className="mt-2 grid grid-cols-4 gap-1 text-[10px]">
+                      {[
+                        { l: "Supported", c: result.claims.filter(c => c.status === "Supported").length, t: "text-severity-low" },
+                        { l: "Partial", c: result.claims.filter(c => c.status === "Partially Supported").length, t: "text-severity-medium" },
+                        { l: "Weak", c: result.claims.filter(c => c.status === "Weak Evidence").length, t: "text-severity-high" },
+                        { l: "Unsup.", c: result.claims.filter(c => c.status === "Unsupported").length, t: "text-severity-critical" },
+                      ].map((b) => (
+                        <div key={b.l} className="rounded border bg-card p-1.5 text-center">
+                          <div className={`text-mono text-[14px] font-semibold tabular-nums ${b.t}`}>{b.c}</div>
+                          <div className="text-muted-foreground">{b.l}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    <button className="inline-flex h-9 items-center justify-center gap-1.5 rounded-md border bg-card text-[12px] hover:bg-accent">
+                      Add to case
+                    </button>
+                    <button className="inline-flex h-9 items-center justify-center gap-1.5 rounded-md border bg-card text-[12px] hover:bg-accent">
+                      Request peer review
+                    </button>
+                  </div>
+
                   <button
                     onClick={() => navigate({ to: "/reports/$id", params: { id: result.id } })}
                     className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-md bg-primary text-[13px] font-medium text-primary-foreground hover:bg-primary/90"
                   >
-                    Open full report <ChevronRight className="h-4 w-4" />
+                    Open investigative briefing <ChevronRight className="h-4 w-4" />
                   </button>
                 </div>
               )}
