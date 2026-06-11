@@ -12,7 +12,7 @@ import {
   narrativeClusters,
   type NarrativeCluster,
 } from "@/lib/mockData";
-import { ArrowDownRight, ArrowUpRight, Minus, AlertTriangle, Activity } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, Minus, Activity } from "lucide-react";
 
 export const Route = createFileRoute("/_app/intelligence")({
   head: () => ({ meta: [{ title: "Narrative Intelligence — VeritasIQ" }] }),
