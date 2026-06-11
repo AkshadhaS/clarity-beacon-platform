@@ -45,10 +45,10 @@ const SECTIONS = [
 function Report() {
   const { analysis: a } = Route.useLoaderData() as { analysis: Analysis };
   const findings = [
-    { tone: "severity-critical", t: `Composite credibility at ${a.credibility}/100 — ${a.riskLevel.toUpperCase()} risk`, d: `Aggregate risk derived from manipulation density, evidence gaps, and source reliability.` },
-    { tone: "severity-high", t: `${a.manipulations.length} manipulation indicators detected`, d: a.manipulations[0]?.explanation ?? "" },
-    { tone: "severity-medium", t: `${a.claims.filter(c => c.status === "Unsupported" || c.status === "Weak Evidence").length} claims lacking corroboration`, d: `Of ${a.claims.length} extracted claims, several rely on unverifiable assertions.` },
-    { tone: "primary", t: `${a.sources.length} sources mapped · ${a.sources.filter(s => s.reliability >= 70).length} verified`, d: `Source corpus indicates ${a.sources.some(s => s.reliability < 30) ? "presence of low-reliability or anonymous sourcing." : "predominantly vetted attribution."}` },
+    { dot: "bg-severity-critical", t: `Composite credibility at ${a.credibility}/100 — ${a.riskLevel.toUpperCase()} risk`, d: `Aggregate risk derived from manipulation density, evidence gaps, and source reliability.` },
+    { dot: "bg-severity-high", t: `${a.manipulations.length} manipulation indicators detected`, d: a.manipulations[0]?.explanation ?? "" },
+    { dot: "bg-severity-medium", t: `${a.claims.filter(c => c.status === "Unsupported" || c.status === "Weak Evidence").length} claims lacking corroboration`, d: `Of ${a.claims.length} extracted claims, several rely on unverifiable assertions.` },
+    { dot: "bg-primary", t: `${a.sources.length} sources mapped · ${a.sources.filter(s => s.reliability >= 70).length} verified`, d: `Source corpus indicates ${a.sources.some(s => s.reliability < 30) ? "presence of low-reliability or anonymous sourcing." : "predominantly vetted attribution."}` },
   ];
 
   return (
