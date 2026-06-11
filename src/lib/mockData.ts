@@ -498,3 +498,91 @@ export const investigationPhases = [
   { phase: "Editorial review", count: 7, color: "high" as const },
   { phase: "Published brief", count: 39, color: "low" as const },
 ];
+
+/* ---------------- Investigation workflow mock data ---------------- */
+
+export interface Annotation {
+  id: string;
+  analyst: string;
+  initials: string;
+  at: string;
+  body: string;
+  span?: string;
+  tag: "claim" | "evidence" | "source" | "narrative" | "flag";
+}
+
+export const analystAnnotations: Annotation[] = [
+  { id: "an_01", analyst: "M. Okafor", initials: "MO", at: "06-09 14:02Z", tag: "claim", span: "hollow out the middle class", body: "Quantification missing. Pull BLS Q1 + CBO baseline before publication." },
+  { id: "an_02", analyst: "L. Park", initials: "LP", at: "06-09 14:18Z", tag: "source", span: "senior insider", body: "Anonymous sourcing — confidence ceiling 25%. Flag for editor." },
+  { id: "an_03", analyst: "A. Tan", initials: "AT", at: "06-09 14:31Z", tag: "narrative", body: "Maps to NAR-0408 cluster (Hollis polling). Velocity ↑ across 3 partisan amplifiers." },
+  { id: "an_04", analyst: "M. Okafor", initials: "MO", at: "06-09 14:55Z", tag: "evidence", body: "Cross-referenced Pew + Gallup — contradicts polling claim. Adding to brief." },
+  { id: "an_05", analyst: "R. Velasquez", initials: "RV", at: "06-09 15:10Z", tag: "flag", body: "Recommend peer review before publishing brief. Risk: high." },
+];
+
+export interface VerificationStep {
+  id: string;
+  label: string;
+  status: "verified" | "in_progress" | "queued" | "blocked";
+  analyst: string;
+  at: string;
+  detail: string;
+}
+
+export const verificationTimeline: VerificationStep[] = [
+  { id: "v1", label: "Intake hash recorded", status: "verified", analyst: "system", at: "06-09 13:48Z", detail: "SHA-256 0x9c2a…f1c2 · 1,284 tokens · 4 entities" },
+  { id: "v2", label: "Claims extracted (3)", status: "verified", analyst: "NLP pipeline", at: "06-09 13:49Z", detail: "Confidence 0.71 avg · 1 unsupported · 1 partial" },
+  { id: "v3", label: "Source attribution mapped", status: "verified", analyst: "M. Okafor", at: "06-09 14:04Z", detail: "2 sources · 1 anonymous (reliability ceiling 25)" },
+  { id: "v4", label: "Cross-reference: CBO baseline", status: "in_progress", analyst: "L. Park", at: "06-09 14:32Z", detail: "Awaiting CBO API response · ETA 12m" },
+  { id: "v5", label: "Cross-reference: Pew polling", status: "verified", analyst: "M. Okafor", at: "06-09 14:55Z", detail: "Contradicted — flagged in claim graph" },
+  { id: "v6", label: "Narrative cluster correlation", status: "in_progress", analyst: "A. Tan", at: "06-09 15:10Z", detail: "Matched NAR-0408 · 78 amplifying sources" },
+  { id: "v7", label: "Peer review", status: "queued", analyst: "R. Velasquez", at: "—", detail: "Queued · SLA 2h" },
+  { id: "v8", label: "Editorial sign-off", status: "blocked", analyst: "—", at: "—", detail: "Blocked by verification step v4" },
+];
+
+export interface NarrativeCluster {
+  id: string;
+  label: string;
+  nodes: number;
+  amplifiers: number;
+  region: string;
+  risk: Severity;
+  trend: number[];
+}
+
+export const narrativeClusters: NarrativeCluster[] = [
+  { id: "NC-018", label: "Election integrity (Midwest)", nodes: 412, amplifiers: 38, region: "US · Midwest", risk: "critical", trend: [12, 18, 24, 28, 41, 62, 78, 92, 87] },
+  { id: "NC-014", label: "Energy collapse (EU)", nodes: 184, amplifiers: 22, region: "EU", risk: "high", trend: [8, 10, 14, 18, 22, 28, 36, 48, 64] },
+  { id: "NC-022", label: "Pharma suppression (Global)", nodes: 612, amplifiers: 71, region: "Global · EN", risk: "critical", trend: [44, 51, 58, 62, 70, 78, 84, 88, 92] },
+  { id: "NC-009", label: "Trade pact ratification", nodes: 92, amplifiers: 8, region: "EU · LATAM", risk: "low", trend: [30, 34, 36, 38, 38, 40, 38, 36, 38] },
+  { id: "NC-019", label: "Hollis polling boost", nodes: 78, amplifiers: 14, region: "US", risk: "medium", trend: [10, 18, 28, 42, 58, 64, 68, 70, 71] },
+];
+
+export interface SourceProfile {
+  name: string;
+  domain: string;
+  reliability: number;
+  bias: string;
+  type: string;
+  coverage: string;
+  cases: number;
+  verifications: number;
+  corrections: number;
+  lastAudit: string;
+  trust: "verified" | "watch" | "flagged" | "blocked";
+  trend: number[];
+}
+
+export const sourceProfiles: SourceProfile[] = [
+  { name: "Reuters", domain: "reuters.com", reliability: 92, bias: "Center", type: "Wire", coverage: "Global", cases: 1842, verifications: 1791, corrections: 14, lastAudit: "06-04", trust: "verified", trend: [88, 89, 90, 91, 91, 92, 92, 92, 92] },
+  { name: "Associated Press", domain: "apnews.com", reliability: 91, bias: "Center", type: "Wire", coverage: "Global", cases: 1612, verifications: 1559, corrections: 18, lastAudit: "06-04", trust: "verified", trend: [89, 90, 90, 90, 91, 91, 91, 91, 91] },
+  { name: "BBC News", domain: "bbc.com", reliability: 86, bias: "Center-Left", type: "Major News", coverage: "Global", cases: 1284, verifications: 1208, corrections: 32, lastAudit: "06-03", trust: "verified", trend: [84, 85, 85, 86, 86, 86, 86, 86, 86] },
+  { name: "Nature", domain: "nature.com", reliability: 95, bias: "Academic", type: "Journal", coverage: "Science", cases: 312, verifications: 308, corrections: 2, lastAudit: "05-31", trust: "verified", trend: [94, 94, 95, 95, 95, 95, 95, 95, 95] },
+  { name: "Financial Times", domain: "ft.com", reliability: 88, bias: "Center-Right", type: "Major News", coverage: "Markets", cases: 921, verifications: 884, corrections: 19, lastAudit: "06-02", trust: "verified", trend: [86, 86, 87, 87, 87, 87, 88, 88, 88] },
+  { name: "PolicyWatch", domain: "policywatch.example", reliability: 64, bias: "Right-leaning", type: "Opinion", coverage: "US Policy", cases: 412, verifications: 318, corrections: 41, lastAudit: "06-07", trust: "watch", trend: [72, 71, 70, 70, 68, 66, 65, 64, 64] },
+  { name: "The Capital Beacon", domain: "capital-beacon.example", reliability: 41, bias: "Right", type: "Opinion-led", coverage: "US Politics", cases: 218, verifications: 142, corrections: 38, lastAudit: "06-08", trust: "watch", trend: [52, 52, 50, 48, 46, 44, 42, 41, 41] },
+  { name: "Newsly Now", domain: "newsly-now.example", reliability: 22, bias: "Partisan", type: "Aggregator", coverage: "US", cases: 184, verifications: 88, corrections: 71, lastAudit: "06-08", trust: "flagged", trend: [41, 38, 34, 30, 28, 26, 24, 22, 22] },
+  { name: "Helix Robotics IR", domain: "helix.example", reliability: 62, bias: "Issuer", type: "Corporate", coverage: "Industry", cases: 48, verifications: 40, corrections: 6, lastAudit: "06-01", trust: "watch", trend: [64, 64, 63, 63, 62, 62, 62, 62, 62] },
+  { name: "X · anonymous accounts", domain: "x.example", reliability: 14, bias: "Variable", type: "Social", coverage: "Global", cases: 2418, verifications: 412, corrections: 184, lastAudit: "06-09", trust: "flagged", trend: [18, 17, 17, 16, 16, 15, 15, 14, 14] },
+  { name: "SEC EDGAR", domain: "sec.gov.example", reliability: 96, bias: "Regulatory", type: "Primary", coverage: "US Markets", cases: 612, verifications: 612, corrections: 0, lastAudit: "06-04", trust: "verified", trend: [96, 96, 96, 96, 96, 96, 96, 96, 96] },
+  { name: "WHO Bulletins", domain: "who.int.example", reliability: 89, bias: "Institutional", type: "Primary", coverage: "Global Health", cases: 218, verifications: 214, corrections: 4, lastAudit: "06-02", trust: "verified", trend: [88, 88, 89, 89, 89, 89, 89, 89, 89] },
+];
