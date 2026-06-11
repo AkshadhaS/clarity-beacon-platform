@@ -131,7 +131,7 @@ function Report() {
               <ul className="space-y-2">
                 {findings.map((f, i) => (
                   <li key={i} className="flex items-start gap-3 rounded-md border bg-surface p-3">
-                    <span className={`mt-0.5 h-2 w-2 shrink-0 rounded-full bg-${f.tone}`} />
+                    <span className={`mt-0.5 h-2 w-2 shrink-0 rounded-full ${f.dot}`} />
                     <div className="min-w-0">
                       <div className="text-[13px] font-medium">{f.t}</div>
                       <div className="text-[12px] text-muted-foreground">{f.d}</div>
